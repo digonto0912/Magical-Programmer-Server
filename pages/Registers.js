@@ -2,6 +2,14 @@ const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken")
 
 const employeSchema = new mongoose.Schema({
+    userName: {
+        type:String,
+        required:true
+    },
+    UserPhoneNumber: {
+        type:Number,
+        required:true
+    },
     email: {
         type:String,
         required:true,
@@ -9,6 +17,14 @@ const employeSchema = new mongoose.Schema({
     },
     pass: {
         type:String,
+        required:true
+    },
+    userPay: {
+        type:Boolean,
+        required:true
+    },
+    coursesNames: {
+        type:Array,
         required:true
     },
     tokens: [
@@ -32,11 +48,11 @@ employeSchema.methods.generateAuthToken = async function(){
     try {
     
         const token = jwt.sign({_id:this._id}, `${process.env.TOKEN_2ND_PART}`);
-        console.log(token);
+        // console.log(token);
         // push token and users search id 
         this.tokens = this.tokens.concat({token:token, userSearchingId:this._id});
         
-        console.log("registerJs page token:", token);
+        // console.log("registerJs page token:", token);
         return token;
     
     } catch (error) {
