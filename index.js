@@ -25,6 +25,7 @@ app.use(fileUpload());
 
 // mongoDB node.js 2.2.12
 var uri = `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0-shard-00-00.dbm4r.mongodb.net:27017,cluster0-shard-00-01.dbm4r.mongodb.net:27017,cluster0-shard-00-02.dbm4r.mongodb.net:27017/${process.env.DB_NAME}?ssl=true&replicaSet=atlas-cwmyp3-shard-0&authSource=admin&retryWrites=true&w=majority`;
+console.log(uri)
 
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
